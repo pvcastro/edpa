@@ -7,15 +7,31 @@ class Node {
             value = v;
         }
         int value;
-        Node* left;
-        Node* right;
+        Node *left;
+        Node *right;
 };
 
 Node root(50);
 
+void add_node(Node *new_node) {
+    Node *current_node = &root;
+    
+    while(current_node == NULL) {
+        if(new_node->value < current_node->value) {
+            
+        }
+        else if(new_node->value > current_node->value) {
+            
+        }
+        else if(new_node->value < current_node->value) {
+            cout << "Nó idêntico já encontrado!";
+        }
+    }
+}
+
 main() {
-   cout << "Hello World\n"; // prints Hello World
-   cout << root.value;
-   
-   return 0;
+   //cout << root.value;
+   /*Node *mine;
+   mine = &root;
+   cout << mine->value;*/
 }
