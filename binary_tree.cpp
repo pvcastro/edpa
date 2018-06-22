@@ -11,14 +11,16 @@ class Node {
         Node *right;
 };
 
-Node root(50);
+Node root(51);
 
 void add_node(Node *new_node) {
     Node *current_node = &root;
     
     while(current_node == NULL) {
         if(new_node->value < current_node->value) {
-            
+            if(current_node->left != NULL){
+                current_node = current_node->left;
+            }
         }
         else if(new_node->value > current_node->value) {
             
@@ -30,8 +32,15 @@ void add_node(Node *new_node) {
 }
 
 main() {
-   //cout << root.value;
-   /*Node *mine;
-   mine = &root;
-   cout << mine->value;*/
+   cout << root.value;
+   Node esquerdo(21);
+   root.left = &esquerdo;
+   cout << root.left->value;
+   //Node *esquerdo = new Node(21);
+   //mine.left = &esquerdo;
+   
+   //mine->left = Node esq(21);
+   //mine->left = new Node(21);
+   //mine = &root;
+   //cout << mine->value;
 }
