@@ -38,7 +38,7 @@ void add_node(Node *new_node) {
             }
         }
         else if(new_node->value < current_node->value) {
-            cout << "Nó idêntico já encontrado!";
+            cout << "NÃ³ idÃªntico jÃ¡ encontrado!";
         }
     }
 }
