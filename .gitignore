@@ -32,3 +32,11 @@
 *.app
 
 \.vscode/
+
+\.settings/
+
+src/
+
+\.cproject
+
+\.project
