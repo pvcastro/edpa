@@ -32,11 +32,11 @@
 *.app
 
 \.vscode/
-
-\.settings/
+/Debug/
 
 src/
 
-\.cproject
-
-\.project
+# Eclipse
+.project
+.cproject
+\.settings/
