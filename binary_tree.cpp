@@ -50,7 +50,7 @@ void add_node(Node *new_node) {
     }
 }
 
-/*Method to print preorder_traversal traversal of a BST*/
+//imprime os nós no percurso em prfundidade(pré-ordem)
 void preorder_traversal(Node *root) {
     cout << "Imprimindo os nós da árvore em pré-ordem: \n";
     if (root == NULL) {
@@ -76,7 +76,7 @@ void preorder_traversal(Node *root) {
 
 }
 
-/*Method to print preorder_traversal traversal of a BST*/
+//imprime os nós no percurso em largura
 void breadth_traversal(Node *root) {
     cout << "Imprimindo os nós árvore em largura: \n";
     if (root == NULL) {
