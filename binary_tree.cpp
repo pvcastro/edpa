@@ -2,6 +2,8 @@
 #include <string>
 #include <stack>
 #include <queue>
+#include <simple_stack.h>
+#include <simple_stack.cpp>
 
 using namespace std;
 
@@ -58,7 +60,7 @@ void preorder_traversal(Node *root) {
         return;
     }
 
-    stack<Node *> stack;
+    simple_stack<Node *> stack;
     stack.push(root);
     while (!stack.empty()) {
         Node *current_node = stack.top();
