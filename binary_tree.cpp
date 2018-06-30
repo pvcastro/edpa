@@ -4,6 +4,8 @@
 #include <queue>
 #include <simple_stack.h>
 #include <simple_stack.cpp>
+#include <simple_queue.h>
+#include <simple_queue.cpp>
 
 using namespace std;
 
@@ -86,7 +88,7 @@ void breadth_traversal(Node *root) {
         return;
     }
 
-    queue<Node *> queue;
+    simple_queue<Node *> queue;
     queue.push(root);
     while (!queue.empty()) {
         Node *current_node = queue.front();

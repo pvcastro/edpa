@@ -3,18 +3,23 @@
 //
 #ifndef EDPA_SIMPLESTACK_H
 #define EDPA_SIMPLESTACK_H
+
 #include <iostream>
 
 using namespace std;
 
-template <typename Type>
+template<typename Type>
 class simple_stack {
 
 public:
     simple_stack();
+
     void push(Type node);
+
     void pop();
+
     Type top();
+
     bool empty();
 
 private:
