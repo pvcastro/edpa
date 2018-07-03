@@ -126,7 +126,7 @@ size_t split(const string &txt, std::vector<string> &strs, char ch) {
 	return strs.size();
 }
 
-void buildTree(simple_stack<string> leavesStack) {
+void build_tree(simple_stack<string> leavesStack) {
 	// Enquanto tiver folhas na pilha de folhas...
 	cout << "entrou no build tree\n";
 	while (!leavesStack.empty()) {
@@ -204,11 +204,11 @@ int main() {
 			continue;
 		} else if (line == "*") {
 			// Se chegou ao final de uma árvore, constrói a árvore e continua para a próxima
-			buildTree(leaves);
+			build_tree(leaves);
 			root = NULL;
 		} else if (line == "$") {
 			// Se chegou ao final da última árvore, constrói a árvore e finaliza
-			buildTree(leaves);
+			build_tree(leaves);
 			return 0;
 		} else {
 			cout << "adicionando linha na pilha: " << line << '\n';
