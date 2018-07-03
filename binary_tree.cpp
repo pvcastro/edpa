@@ -1,8 +1,7 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
-//#include <stack>
-//#include <queue>
 #include "simple_stack.h"
 #include "simple_stack.cpp"
 #include "simple_queue.h"
@@ -55,7 +54,7 @@ void add_node(Node *new_node) {
 	}
 }
 
-//imprime os nós no percurso em prfundidade(pré-ordem)
+//imprime os nós no percurso em profundidade(pré-ordem)
 void preorder_traversal(Node *root) {
 	cout << "Imprimindo os nós da árvore em pré-ordem: \n";
 	if (root == NULL) {
@@ -83,7 +82,7 @@ void preorder_traversal(Node *root) {
 
 //imprime os nós no percurso em largura
 void breadth_traversal(Node *root) {
-	cout << "Imprimindo os nós árvore em largura: \n";
+	cout << "Imprimindo os nós da árvore em largura: \n";
 	if (root == NULL) {
 		cout << "Árvore Vazia. \n";
 		return;
@@ -128,7 +127,7 @@ size_t split(const string &txt, std::vector<string> &strs, char ch) {
 
 void build_tree(simple_stack<string> leavesStack) {
 	// Enquanto tiver folhas na pilha de folhas...
-	cout << "entrou no build tree\n";
+	cout << "construindo árvore\n";
 	while (!leavesStack.empty()) {
 		// Obtém a última linha de folhas adicionada
 		string lastLeaves = leavesStack.top();
@@ -187,34 +186,42 @@ void test_tree() {
 	root = NULL;
 }
 
-int main() {
+int main(int argc, char* argv[]) {
 
 	root = NULL;
 
-	string lines[] = { "6 2 7 1", "4 9 3", "5 8", "0", "$" };
+	string line;
+	string path = argv[1];
+	cout << "lendo dados em " << path << "\n";
 
 	simple_stack<string> leaves;
-	//for (std::string line; std::getline(std::cin, line);) {
-	for (int i = 0; i < sizeof(lines); i++) {
-		string line = lines[i];
-		if (line.empty()) {
-			// Se estiver vazia, continua
-			cout << "vazio";
-			cout << '\n';
-			continue;
-		} else if (line == "*") {
-			// Se chegou ao final de uma árvore, constrói a árvore e continua para a próxima
-			build_tree(leaves);
-			root = NULL;
-		} else if (line == "$") {
-			// Se chegou ao final da última árvore, constrói a árvore e finaliza
-			build_tree(leaves);
-			return 0;
-		} else {
-			cout << "adicionando linha na pilha: " << line << '\n';
-			// Adiciona a linha contendo os nós na pilha de folhas
-			leaves.push(line);
+
+	ifstream myfile(path);
+	if (myfile.is_open()) {
+		while (getline(myfile, line)) {
+			if (line.empty()) {
+				// Se estiver vazia, continua
+				cout << path << "vazio";
+				cout << '\n';
+				continue;
+			} else if (line == "*") {
+				// Se chegou ao final de uma árvore, constrói a árvore e continua para a próxima
+				build_tree(leaves);
+				root = NULL;
+			} else if (line == "$") {
+				// Se chegou ao final da última árvore, constrói a árvore e finaliza
+				build_tree(leaves);
+				root = NULL;
+				return 0;
+			} else {
+				cout << "adicionando linha na pilha: " << line << '\n';
+				// Adiciona a linha contendo os nós na pilha de folhas
+				leaves.push(line);
+			}
 		}
+		myfile.close();
+	} else {
+		cout << path << " não encontrado";
 	}
 
 	return 0;
