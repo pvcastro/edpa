@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <ctime>
 #include "simple_stack.h"
 #include "simple_stack.cpp"
 #include "simple_queue.h"
@@ -47,7 +48,7 @@ void add_node(Node *new_node) {
 					break;
 				}
 			} else if (new_node->value == current_node->value) {
-				cout << "Nó idêntico já encontrado! \n";
+				cout << "Nó idêntico já encontrado! " << current_node->value << "\n";
 				break;
 			}
 		}
@@ -125,8 +126,9 @@ size_t split(const string &txt, std::vector<string> &strs, char ch) {
 	return strs.size();
 }
 
-void build_tree(simple_stack<string> leavesStack) {
+void build_tree(simple_stack<string> &leavesStack) {
 	// Enquanto tiver folhas na pilha de folhas...
+	clock_t begin = clock();
 	cout << "construindo árvore\n";
 	while (!leavesStack.empty()) {
 		// Obtém a última linha de folhas adicionada
@@ -141,9 +143,17 @@ void build_tree(simple_stack<string> leavesStack) {
 		}
 		leavesStack.pop();
 	}
+	cout << '\n';
+	clock_t end_build = clock();
 	// Exibe a árvore de acordo com algum percurso
 	breadth_traversal(root);
+	clock_t end_breadth_traversal = clock();
 	preorder_traversal(root);
+	clock_t end_preorder_traversal = clock();
+	cout << '\n';
+	cout << "Duração da construção da árvore: " << double(end_build - begin) / (CLOCKS_PER_SEC / 1000) << " ms. \n";
+	cout << "Duração do percurso em largura: " << double(end_breadth_traversal - end_build) / (CLOCKS_PER_SEC / 1000) << " ms. \n";
+	cout << "Duração do percurso em profundidade: " << double(end_preorder_traversal - end_breadth_traversal) / (CLOCKS_PER_SEC / 1000) << " ms. \n";
 	cout << '\n';
 }
 
@@ -208,6 +218,7 @@ int main(int argc, char* argv[]) {
 				// Se chegou ao final de uma árvore, constrói a árvore e continua para a próxima
 				build_tree(leaves);
 				root = NULL;
+				//leaves.empty()
 			} else if (line == "$") {
 				// Se chegou ao final da última árvore, constrói a árvore e finaliza
 				build_tree(leaves);
