@@ -1,0 +1,19 @@
+Ayrton Denner da Silva Amaral:
+
+	Implementação da estrutura da Árvore Binária de Busca com a classe Node e construção da árvore com o
+	método add_node.
+ 
+Fabrício Alves de Freitas:
+
+	Pesquisas acerca das complexidades assintóticas teóricas relacionadas às estruturas utilizadas, assim
+	como a produção do relatório em Latex.
+ 
+José Adenaldo Santos Bittencourt Júnior: 
+
+	Implementação das estruturas de pilha (simple_stack.cpp) e fila (simple_queue.cpp), e dos métodos de 
+	percurso em binary_tree.cpp (breadth_traversal e preorder_traversal).
+
+Pedro Vitor Quinta de Castro: 
+
+	Implementação do algoritmo da solução do problema, a partir da leitura dos dados de entrada em um txt,
+	nos métodos main e build_tree.

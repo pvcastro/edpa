@@ -1,2 +1,27 @@
-# edpa
+# EDPA
 Repositório para Trabalho Final de EDPA 2018/1
+
+Problema:
+
+Considerando uma lista de números correspondentes às folhas que teriam sido obtidas a partir de uma sequência de podas em uma árvore de determinada altura, reconstruir a árvore a partir da lista de folhas informadas e imprimir o percurso em pré-ordem e em largura da árvore obtida.
+	
+Exemplo:
+	
+		930 753 393 350 971 13 175 402
+		150 885 793 287
+		214 801
+		958
+		$
+	
+		Imprimindo os nós da árvore em largura: 
+			958 214 971 150 801 13 175 793 885 287 930 753 393 350 402 
+		Imprimindo os nós da árvore em pré-ordem: 
+			958 214 150 13 175 801 793 287 753 393 350 402 885 930 971
+
+Estrutura do Projeto:
+
+edpa\
+* binary_tree.cpp: Contém a implementação da estrutura de dados Árvore Binária de Busca e do algoritmo da solução do problema.
+* simple_queue.cpp: Contém a implementação da estrutura de dados Fila.
+* simple_stack.cpp: Contém a implementação da estrutura de dados Pilha.
+* run.sh: Script para Linux e MacOS para compilação dos arquivos e execução do algoritmo a partir de um txt especificado. O script deve ser editado para especificar o caminho correto do arquivo input.txt.
