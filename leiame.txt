@@ -24,8 +24,11 @@ edpa\
 	simple_queue.cpp: Contém a implementação da estrutura de dados Fila.
 	simple_stack.cpp: Contém a implementação da estrutura de dados Pilha.
 	run.sh: Script para Linux e MacOS para compilação dos arquivos e execução do algoritmo a partir de um txt especificado. O script deve ser editado para especificar o caminho correto do arquivo input.txt.
+	edpa.exe: Executável para ambiente Windows. Deve ser executado via prompt, informando o caminho do arquivo que contém os dados de entrada.
 	
 Execução:
 
-Para executar o arquivo, é só acessar o mesmo via linha de comando, passando entre aspas o caminho do arquivo de texto a ser inserido.
+Para executar o programa em Ambiente Windows, é só acessar o mesmo via linha de comando, passando entre aspas o caminho do arquivo de texto a ser inserido.
 Exemplo: C:\caminho\edpa.exe "C:\caminho\input.txt"
+
+Para executar o programa em Ambiente Linux ou MacOS, deve ser executado o script run.sh.
