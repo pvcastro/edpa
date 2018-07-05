@@ -48,7 +48,8 @@ void add_node(Node *new_node) {
 					break;
 				}
 			} else if (new_node->value == current_node->value) {
-				cout << "Nó idêntico já encontrado! " << current_node->value << "\n";
+				cout << "Nó idêntico já encontrado! " << current_node->value
+						<< "\n";
 				break;
 			}
 		}
@@ -106,6 +107,21 @@ void breadth_traversal(Node *root) {
 	cout << "\n";
 }
 
+int get_tree_height(Node* node) {
+	if (node == NULL)
+		return 0;
+	else {
+		int left_depth = get_tree_height(node->left);
+		int right_depth = get_tree_height(node->right);
+
+		if (left_depth > right_depth) {
+			return (left_depth + 1);
+		} else {
+			return (right_depth + 1);
+		}
+	}
+}
+
 size_t split(const string &txt, std::vector<string> &strs, char ch) {
 	size_t pos = txt.find(ch);
 	size_t initialPos = 0;
@@ -129,11 +145,12 @@ size_t split(const string &txt, std::vector<string> &strs, char ch) {
 void build_tree(simple_stack<string> &leavesStack) {
 	// Enquanto tiver folhas na pilha de folhas...
 	clock_t begin = clock();
-	cout << "construindo árvore\n";
+	cout << "\n";
+	cout << "Construindo a partir das folhas:\n\n";
 	while (!leavesStack.empty()) {
 		// Obtém a última linha de folhas adicionada
 		string lastLeaves = leavesStack.top();
-		cout << "últimas folhas: " << lastLeaves << "\n";
+		cout << lastLeaves << "\n";
 		std::vector<string> leaves;
 		split(lastLeaves, leaves, ' ');
 		for (int j = 0; j < leaves.size(); j++) {
@@ -145,15 +162,30 @@ void build_tree(simple_stack<string> &leavesStack) {
 	}
 	cout << '\n';
 	clock_t end_build = clock();
+	// Calcula a altura da árvore
+	cout << "Altura da árvore: " << get_tree_height(root) << "\n\n";
+	clock_t end_height = clock();
 	// Exibe a árvore de acordo com algum percurso
 	breadth_traversal(root);
 	clock_t end_breadth_traversal = clock();
 	preorder_traversal(root);
 	clock_t end_preorder_traversal = clock();
 	cout << '\n';
-	cout << "Duração da construção da árvore: " << double(end_build - begin) / (CLOCKS_PER_SEC / 1000) << " ms. \n";
-	cout << "Duração do percurso em largura: " << double(end_breadth_traversal - end_build) / (CLOCKS_PER_SEC / 1000) << " ms. \n";
-	cout << "Duração do percurso em profundidade: " << double(end_preorder_traversal - end_breadth_traversal) / (CLOCKS_PER_SEC / 1000) << " ms. \n";
+	cout << "==================================================\n";
+	cout << "Tempo de execução dos algoritmos:\n";
+	cout << "==================================================\n";
+	cout << "  Duração da construção da árvore: "
+			<< double(end_build - begin) / (CLOCKS_PER_SEC / 1000) << " ms. \n";
+	cout << "  Duração do cálculo da altura: "
+			<< double(end_height - end_build) / (CLOCKS_PER_SEC / 1000)
+			<< " ms. \n";
+	cout << "  Duração do percurso em largura: "
+			<< double(end_breadth_traversal - end_height)
+					/ (CLOCKS_PER_SEC / 1000) << " ms. \n";
+	cout << "  Duração do percurso em profundidade: "
+			<< double(end_preorder_traversal - end_breadth_traversal)
+					/ (CLOCKS_PER_SEC / 1000) << " ms. \n";
+	cout << "==================================================\n";
 	cout << '\n';
 }
 
@@ -202,9 +234,10 @@ int main(int argc, char* argv[]) {
 
 	string line;
 	string path = argv[1];
-	cout << "lendo dados em " << path << "\n";
+	cout << "...lendo dados em " << path << "\n\n";
 
 	simple_stack<string> leaves;
+	int linha = 1;
 
 	ifstream myfile(path);
 	if (myfile.is_open()) {
@@ -218,16 +251,18 @@ int main(int argc, char* argv[]) {
 				// Se chegou ao final de uma árvore, constrói a árvore e continua para a próxima
 				build_tree(leaves);
 				root = NULL;
-				//leaves.empty()
+				int linha = 1;
 			} else if (line == "$") {
 				// Se chegou ao final da última árvore, constrói a árvore e finaliza
 				build_tree(leaves);
 				root = NULL;
+				int linha = 1;
 				return 0;
 			} else {
-				cout << "adicionando linha na pilha: " << line << '\n';
+				cout << "linha: " << linha << ": " << line << '\n';
 				// Adiciona a linha contendo os nós na pilha de folhas
 				leaves.push(line);
+				linha++;
 			}
 		}
 		myfile.close();
