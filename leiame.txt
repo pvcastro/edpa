@@ -27,4 +27,5 @@ edpa\
 	
 Execução:
 
-Para executar o arquivo, é só acessar o mesmo via linha de comando, passando entre aspas o caminho do arquivo de texto a ser inserido. Exemplo: C:\caminho\edpa.exe "C:\caminho\input.txt"
+Para executar o arquivo, é só acessar o mesmo via linha de comando, passando entre aspas o caminho do arquivo de texto a ser inserido.
+Exemplo: C:\caminho\edpa.exe "C:\caminho\input.txt"
