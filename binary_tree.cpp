@@ -10,6 +10,10 @@
 
 using namespace std;
 
+/**
+ * Classe que representa os nós da Árvore Binária de Busca
+ *
+ */
 class Node {
 public:
 	Node(int v) {
@@ -23,8 +27,15 @@ public:
 	Node *right;
 };
 
+// Nó que representa a raiz da árvore
 Node *root = NULL;
 
+/**
+ * Método responsável por adicionar nós na Árvore Binária de Busca, de acordo com suas propriedades.
+ * Garante que cada nó tem na sua sub-árvore esquerda somente valores menores do que o do nó, e somente
+ * valores maiores na sub-árvore direita.
+ *
+ */
 void add_node(Node *new_node) {
 
 	if (root == NULL) {
@@ -56,7 +67,10 @@ void add_node(Node *new_node) {
 	}
 }
 
-//imprime os nós no percurso em profundidade(pré-ordem)
+/**
+ * Método responsável pelo percurso em pré-ordem, imprimindo os nós no percurso em profundidade.
+ *
+ */
 void preorder_traversal(Node *root) {
 	cout << "Imprimindo os nós da árvore em pré-ordem: \n";
 	if (root == NULL) {
@@ -82,7 +96,10 @@ void preorder_traversal(Node *root) {
 
 }
 
-//imprime os nós no percurso em largura
+/**
+ * Método responsável pela impressão dos nós no percurso em largura.
+ *
+ */
 void breadth_traversal(Node *root) {
 	cout << "Imprimindo os nós da árvore em largura: \n";
 	if (root == NULL) {
@@ -107,6 +124,10 @@ void breadth_traversal(Node *root) {
 	cout << "\n";
 }
 
+/**
+ * Método responsável pelo cálculo da altura da árvore.
+ *
+ */
 int get_tree_height(Node* node) {
 	if (node == NULL)
 		return 0;
@@ -122,6 +143,11 @@ int get_tree_height(Node* node) {
 	}
 }
 
+/**
+ * Realiza a divisão da string informada, de acordo com o separador especificado. Armazenando no vetor
+ * cada elemento obtido a partir da separacão da string.
+ *
+ */
 size_t split(const string &txt, std::vector<string> &strs, char ch) {
 	size_t pos = txt.find(ch);
 	size_t initialPos = 0;
@@ -142,6 +168,10 @@ size_t split(const string &txt, std::vector<string> &strs, char ch) {
 	return strs.size();
 }
 
+/**
+ * Método responsável construcão da árvore a partir da pilha de listas de folhas.
+ *
+ */
 void build_tree(simple_stack<string> &leavesStack) {
 	// Enquanto tiver folhas na pilha de folhas...
 	clock_t begin = clock();
@@ -189,45 +219,13 @@ void build_tree(simple_stack<string> &leavesStack) {
 	cout << '\n';
 }
 
-void test_tree() {
-	//teste árvore nula
-	preorder_traversal(root);
-	breadth_traversal(root);
-
-	//teste árvore 1
-	add_node(new Node(50));
-	add_node(new Node(10));
-	add_node(new Node(60));
-	add_node(new Node(5));
-	add_node(new Node(65));
-	add_node(new Node(65));
-
-	//pré-ordem esperada: 50 10 5 60 65
-	preorder_traversal(root);
-	//percurso em largura esperada: 50 10 60 5 65
-	breadth_traversal(root);
-
-	root = NULL;
-	//teste arvore 2
-	add_node(new Node(6));
-	add_node(new Node(2));
-	add_node(new Node(7));
-	add_node(new Node(1));
-	add_node(new Node(4));
-	add_node(new Node(9));
-	add_node(new Node(3));
-	add_node(new Node(5));
-	add_node(new Node(8));
-	add_node(new Node(10));
-
-	//árvore em pré-ordem: 6 2 1 4 3 5 7 9 8 10
-	preorder_traversal(root);
-	//árvore em pré-ordem: 6 2 7 1 4 9 3 5 8 10
-	breadth_traversal(root);
-
-	root = NULL;
-}
-
+/**
+ * Método responsável pela execucão da rotina da solucão. Faz uma leitura dos dados de entrada a
+ * partir do caminho especificado no vetor de argumentos, e percorre cada linha do arquivo. Se for
+ * uma lista de folhas armazena em uma pilha, se for o carácter '*' indica o fim da lista de folhas
+ * de uma árvore, e se for o carácter '$' indica o final dos dados no arquivo.
+ *
+ */
 int main(int argc, char* argv[]) {
 
 	root = NULL;
